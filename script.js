@@ -1,10 +1,12 @@
+const { match } = require("assert")
+
 function kwadratowa(){
 
-    var a = parseFloat(prompt("Podaj liczbe a (f(x) = ax² + bx + c)"))
-    var b = parseFloat(prompt("Podaj liczbe b (f(x) = ax² + bx + c)"))
-    var c = parseFloat(prompt("Podaj liczbe c (f(x) = ax² + bx + c)"))
+    var a = parseFloat(prompt("Give a (f(x) = ax² + bx + c)"))
+    var b = parseFloat(prompt("Give b (f(x) = ax² + bx + c)"))
+    var c = parseFloat(prompt("Give c (f(x) = ax² + bx + c)"))
 
-    var postacogolna = (`f(x) = ${a}x² + ${b}x + ${c}`)
+    var standardform = (`f(x) = ${a}x² + ${b}x + ${c}`)
 
     var delta = (b * b - (4 * a * c))
     var pdelta = (Math.sqrt(delta))
@@ -24,9 +26,20 @@ function kwadratowa(){
 
     }
 
-    var qo = (`-${delta} / (4 * ${a}) = ${q}`)
+    if (delta <= 0){
 
-    var Postackanoniczna = (`f(x) = ${a}(x - ${p})² + ${q}`)
+        var deltaminus = delta * -1
+
+        var qo = (`${deltaminus} / (4 * ${a}) = ${q}`)
+        
+    }
+    else {
+
+        var qo = (`-${delta} / (4 * ${a}) = ${q}`)
+
+    }
+
+    var vertexform = (`f(x) = ${a}(x - ${p})² + ${q}`)
 
     var deltao = (`Δ = ${b}² - 4 * ${a} * ${c} = ${delta}`)
 
@@ -50,10 +63,10 @@ function kwadratowa(){
              
         }
 
-        var postaciloczynowa = (`f(x) = a(x - ${x1})(x - ${x2})`)
+        var factoredform = (`f(x) = a(x - ${x1})(x - ${x2})`)
 
-        document.getElementById("kwadratowa").innerHTML= (`Postać ogólna: ${postacogolna} <br> Postać iloczynowa: ${postaciloczynowa} <br> Postać kanoniczna: ${Postackanoniczna}`)
-        document.getElementById("inne").innerHTML= (`Miejsce zerowe (x1): ${x1o} <br> Miejsce zerowe (x2): ${x2o} <br> <br> Delta: ${deltao}`)
+        document.getElementById("forms").innerHTML= (`Standard Form: ${standardform} <br> Factored Form: ${factoredform} <br> Vertex Form: ${vertexform}`)
+        document.getElementById("other").innerHTML= (`Zero (x1): ${x1o} <br> Zero (x2): ${x2o} <br> <br> Delta: ${deltao}`)
         document.getElementById("pq").innerHTML= (`p: ${po} <br> p: ${qo}`)
         document.getElementById("abc").innerHTML= (`a = ${a} <br> b = ${b} <br> c = ${c}`)
 
@@ -73,14 +86,18 @@ function kwadratowa(){
             var x0o = (`-${b} / (2 * ${a})`)
         }
 
-        var postaciloczynowa = (`f(x) = a(x - ${x0})²`)
-        document.getElementById("kwadratowa").innerHTML= (`Postać ogólna: ${postacogolna} <br> Postać iloczynowa: ${postaciloczynowa} <br> Postać kanoniczna: ${Postackanoniczna}`)
-        document.getElementById("inne").innerHTML= (`Miejsce zerowe (x0 = (x1 oraz x2)): ${x0o} <br> <br> Delta: ${deltao}`)
+        var factoredform = (`f(x) = a(x - ${x0})²`)
+
+        document.getElementById("forms").innerHTML= (`Standard Form: ${standardform} <br> Factored Form: ${factoredform} <br> Vertex Form: ${vertexform}`)
+        document.getElementById("other").innerHTML= (`Zero (x0 = (x1 and x2)): ${x0o} <br> <br> Delta: ${deltao}`)
         document.getElementById("pq").innerHTML= (`p: ${po} <br> p: ${qo}`)
         document.getElementById("abc").innerHTML= (`a = ${a} <br> b = ${b} <br> c = ${c}`)
 
     }
     else{
-        document.getElementById("abc").innerHTML= (`blond`)
+        document.getElementById("forms").innerHTML= (`Error, Can give zeros cuz delta is negative (-Δ) and cant give sqrt`)
+        document.getElementById("other").innerHTML- (`Delta: ${deltao}`)
+        document.getElementById("pq").innerHTML= (`p: ${po} <br> p: ${qo}`)
+        document.getElementById("abc").innerHTML= (`a = ${a} <br> b = ${b} <br> c = ${c}`)
     }
 }
